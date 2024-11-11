@@ -80,8 +80,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/etCidadeTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etCodigoTime"
-        tools:ignore="VisualLintTextFieldSize" />
+        app:layout_constraintTop_toTopOf="@+id/etCodigoTime" />
 
     <EditText
         android:id="@+id/etCidadeTime"
@@ -97,8 +96,7 @@
         android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="VisualLintTextFieldSize" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/btnInserirTime"

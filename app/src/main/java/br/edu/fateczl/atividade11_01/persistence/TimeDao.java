@@ -16,6 +16,9 @@ import br.edu.fateczl.atividade11_01.model.Jogador;
 import br.edu.fateczl.atividade11_01.model.Time;
 
 public class TimeDao implements ITimeDao, ICRUDDao<Time> {
+    /*
+     * @author: Gustavo Guimarães de Oliveira
+     */
     private final Context context;
     private GenericDao gDao;
     private SQLiteDatabase db;
@@ -56,30 +59,19 @@ public class TimeDao implements ITimeDao, ICRUDDao<Time> {
     @SuppressLint("Range")
     @Override
     public Time findOne(Time time) throws SQLException {
-        String sql = "SELECT j.id AS cod_jog, j.nome AS nome_jog, j.nasc AS nasc_jog, j.altura AS altura_jog, " +
-                "j.peso AS peso_jog, t.codigo, t.nome, t.cidade" +
-                "FROM jogador j INNER JOIN time t" +
-                "ON j.codigo_time = t.codigo" +
-                "AND t.codigo = " + time.getCodigo();
+        System.out.println("Find One");
+        String sql = "SELECT codigo, nome, cidade FROM time WHERE codigo = " + time.getCodigo();
 
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
+            System.out.println("Cursor nulo!");
             cursor.moveToFirst();
         }
         if (!cursor.isAfterLast()) {
-            Jogador jogador = new Jogador();
-            jogador.setId(cursor.getInt(cursor.getColumnIndex("cod_jog")));
-            jogador.setNome(cursor.getString(cursor.getColumnIndex("nome_jog")));
-            jogador.setDataNasc(LocalDate.parse(cursor.getString(cursor.getColumnIndex("nasc_jog"))));
-            jogador.setAltura(cursor.getFloat(cursor.getColumnIndex("altura_jog")));
-            jogador.setPeso(cursor.getFloat(cursor.getColumnIndex("peso_jog")));
-
+            System.out.println("Cursor não nulo!");
             time.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
             time.setNome(cursor.getString(cursor.getColumnIndex("nome")));
             time.setCidade(cursor.getString(cursor.getColumnIndex("cidade")));
-
-            jogador.setTime(time);
-
         }
         cursor.close();
         return time;
@@ -89,29 +81,18 @@ public class TimeDao implements ITimeDao, ICRUDDao<Time> {
     @Override
     public List<Time> findAll() throws SQLException {
         List<Time> times = new ArrayList<>();
-        String sql = "SELECT j.id AS cod_jog, j.nome AS nome_jog, j.nasc AS nasc_jog, j.altura AS altura_jog, " +
-                "j.peso AS peso_jog, t.codigo, t.nome, t.cidade" +
-                "FROM jogador j INNER JOIN time t" +
-                "ON j.codigo_time = t.codigo";
+        String sql = "SELECT codigo, nome, cidade FROM time";
 
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        if (!cursor.isAfterLast()) {
-            Jogador jogador = new Jogador();
-            jogador.setId(cursor.getInt(cursor.getColumnIndex("cod_jog")));
-            jogador.setNome(cursor.getString(cursor.getColumnIndex("nome_jog")));
-            jogador.setDataNasc(LocalDate.parse(cursor.getString(cursor.getColumnIndex("nasc_jog"))));
-            jogador.setAltura(cursor.getFloat(cursor.getColumnIndex("altura_jog")));
-            jogador.setPeso(cursor.getFloat(cursor.getColumnIndex("peso_jog")));
-
+        while (!cursor.isAfterLast()) {
             Time time = new Time();
             time.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
             time.setNome(cursor.getString(cursor.getColumnIndex("nome")));
             time.setCidade(cursor.getString(cursor.getColumnIndex("cidade")));
 
-            jogador.setTime(time);
             times.add(time);
             cursor.moveToNext();
         }

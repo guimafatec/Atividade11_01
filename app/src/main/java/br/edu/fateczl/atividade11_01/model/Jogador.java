@@ -40,6 +40,13 @@ public class Jogador {
     public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
+    public void setDataNasc(String dataNasc) {
+        String nasc = dataNasc;
+        if (nasc.equals("")) {
+            nasc = "9999-01-01";
+        }
+        this.dataNasc = LocalDate.parse(nasc);
+    }
 
     public float getAltura() {
         return altura;
@@ -67,6 +74,6 @@ public class Jogador {
 
     @Override
     public String toString() {
-        return String.format("ID: %d\nNome: %s\nNasc.: %s\nAltura: %.2fm\nPeso:%.2fkg\nTime: %s", id, nome, dataNasc.toString(), altura, peso, time.getNome());
+        return String.format("ID: %d - Nome: %s - Nasc.: %s - Altura: %.2fm - Peso: %.2fkg - Time: %s", id, nome, dataNasc.toString(), altura, peso, time.getNome());
     }
 }

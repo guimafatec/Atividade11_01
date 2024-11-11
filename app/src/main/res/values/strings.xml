@@ -15,7 +15,7 @@
     <string name="etCodigoJogador">Código</string>
     <string name="btnBuscarJogador">Buscar</string>
     <string name="etNomeJogador">Nome</string>
-    <string name="etDataNascimento">DD/MM/YYYY</string>
+    <string name="etDataNascimento">YYYY-MM-DD</string>
     <string name="etAlturaJogador">Altura</string>
     <string name="etPesoJogador">Peso</string>
 
@@ -25,4 +25,5 @@
     <string name="btnBuscarTime">Buscar</string>
     <string name="etNomeTime">Nome</string>
     <string name="etCidadeTime">Cidade</string>
+
 </resources>
