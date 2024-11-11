@@ -9,6 +9,9 @@ import br.edu.fateczl.atividade11_01.persistence.JogadorDao;
 import br.edu.fateczl.atividade11_01.persistence.TimeDao;
 
 public class TimeController implements IController<Time> {
+    /*
+     * @author: Gustavo Guimarães de Oliveira
+     */
     private final TimeDao tDao;
 
     public TimeController(TimeDao tDao) {

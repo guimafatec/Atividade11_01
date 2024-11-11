@@ -8,6 +8,9 @@ import br.edu.fateczl.atividade11_01.model.Jogador;
 import br.edu.fateczl.atividade11_01.persistence.JogadorDao;
 
 public class JogadorController implements IController<Jogador> {
+    /*
+     * @author: Gustavo Guimarães de Oliveira
+     */
     private final JogadorDao jDao;
 
     public JogadorController(JogadorDao jDao) {
